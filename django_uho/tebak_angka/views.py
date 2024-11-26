@@ -19,10 +19,9 @@ def cnn_prediction(request):
     if request.method == 'POST':
         form = PhotoUploadForm(request.POST, request.FILES)
         if form.is_valid():
-            # Simpan file foto yang diunggah
             uploaded_photo = form.save()
-            # Path ke file foto yang diunggah
             image_path = uploaded_photo.photo.path
+            # convert L means Grayscale
             img = Image.open(image_path).convert('L').resize((28, 28))
             img_array = np.array(img).reshape(1, 28, 28, 1) / 255.0
 
@@ -47,8 +46,6 @@ def photo_upload(request):
         if form.is_valid():
             # Simpan file foto yang diunggah
             uploaded_photo = form.save()
-            # get photo from DB
-            # photo = Photo.objects.get(id=photo_id)
 
             # Path ke file foto yang diunggah
             image_path = uploaded_photo.photo.path
