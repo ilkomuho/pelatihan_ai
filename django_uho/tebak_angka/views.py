@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.conf import settings
 from .forms import PhotoUploadForm
-from .models import PredictionLog
+# from .models import PredictionLog
 from tensorflow.keras.models import load_model # type: ignore
 from PIL import Image
 
@@ -13,6 +13,7 @@ model_path = os.path.join(settings.BASE_DIR, 'ai_models', 'mnist_model.h5')
 model = load_model(model_path)
 
 def photo_upload(request):
+    
     if request.method == 'POST':
         form = PhotoUploadForm(request.POST, request.FILES)
         if form.is_valid():
@@ -35,7 +36,11 @@ def photo_upload(request):
             # PredictionLog.objects.create(photo=photo, prediction=str(prediction,confidence_score))
 
             # Tampilkan hasil prediksi
-            return render(request, 'tebak_angka/result.html', {'result': result , 'confidence_score': confidence_score})
+            return render(request, 'tebak_angka/result.html', 
+                          {'result': result , 
+                           'confidence_score': confidence_score,
+                            'uploaded_photo_url': uploaded_photo.photo.url,  
+                           })
     else:
         form = PhotoUploadForm()
     

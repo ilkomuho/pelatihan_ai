@@ -8,7 +8,10 @@
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Upload</button>
+        <button type="submit">Predict number</button>
     </form>
+    <br>
+    <p><a href="/">back to home</a></p>
+    
 </body>
 </html>

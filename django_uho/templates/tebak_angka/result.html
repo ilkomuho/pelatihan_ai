@@ -5,6 +5,11 @@
 </head>
 <body>
     <h1>Prediction Result</h1>
-    <p>Predicted Class: {{ result }}</p>
+    <ul>
+        <li><img src="{{ uploaded_photo_url }}" alt="Uploaded Image" style="max-width: 300px;"></li>
+        <li> Confidence: {{ confidence_score }}</li>
+        <li> Predicted Class: {{ result }} </li>
+        <li> <a href="/">back to homepage</a></li>
+    </ul>
 </body>
 </html>

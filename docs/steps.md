@@ -46,3 +46,18 @@
 2. konfigurasi nginx
 3. use the web!
 
+# pembuatan model
+untuk membuat model lakukan
+1.  buat models/UploadedPhoto
+```python
+from django.db import models
+
+class UploadedPhoto(models.Model):
+    photo = models.ImageField(upload_to='uploaded_photos/')
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+```
+2. make migrations
+python manage.py makemigrations
+
+3. lakukan migrasi
+python manage.py migrate
