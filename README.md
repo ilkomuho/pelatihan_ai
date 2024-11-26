@@ -7,7 +7,7 @@ Cara menjalankan Kode
 pip install -r requirements.txt
 
 # masuk ke direktori
-cd uhomnist
+cd django_uho
 
 # how to migrate db in django apps
 python.exe ./manage.py migrate
