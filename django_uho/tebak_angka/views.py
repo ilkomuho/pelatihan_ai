@@ -12,8 +12,36 @@ import os
 model_path = os.path.join(settings.BASE_DIR, 'ai_models', 'mnist_model.h5')
 model = load_model(model_path)
 
-def photo_upload(request):
+cnn_model_path = os.path.join(settings.BASE_DIR, 'ai_models', 'cnn_mnist_model.h5')
+cnn_model = load_model(model_path)
+
+def cnn_prediction(request):
+    if request.method == 'POST':
+        form = PhotoUploadForm(request.POST, request.FILES)
+        if form.is_valid():
+            # Simpan file foto yang diunggah
+            uploaded_photo = form.save()
+            # Path ke file foto yang diunggah
+            image_path = uploaded_photo.photo.path
+            img = Image.open(image_path).convert('L').resize((28, 28))
+            img_array = np.array(img).reshape(1, 28, 28, 1) / 255.0
+
+            # Prediksi dengan model
+            predictions = cnn_model.predict(img_array)
+            result = np.argmax(predictions, axis=1)  # Sesuaikan dengan kebutuhan output model
+            confidence_score = np.max(predictions)
+
+            return render(request, 'tebak_angka/result.html', 
+                          {'result': result , 
+                           'confidence_score': confidence_score,
+                            'uploaded_photo_url': uploaded_photo.photo.url,  
+                           })
+    else:
+        form = PhotoUploadForm()
     
+    return render(request, 'tebak_angka/cnn_predict.html', {'form': form})
+
+def photo_upload(request):
     if request.method == 'POST':
         form = PhotoUploadForm(request.POST, request.FILES)
         if form.is_valid():
