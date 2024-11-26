@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'tebak_angka'
+    'tebak_angka',
+    'sentiment_analysis'
 ]
 
 MIDDLEWARE = [
