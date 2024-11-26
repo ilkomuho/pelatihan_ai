@@ -1,3 +1,5 @@
 from django.db import models
 
-# Create your models here.
+class UploadedPhoto(models.Model):
+    photo = models.ImageField(upload_to='uploaded_photos/')
+    uploaded_at = models.DateTimeField(auto_now_add=True)
