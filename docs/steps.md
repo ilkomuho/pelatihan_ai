@@ -18,6 +18,16 @@
             password: pelatihanuho
 2. cd <dj_project>
 3. python manage.py startapp <dj_app>
+- Pada settings.py, tambahkan
+```python
+INSTALLED_APPS = [
+    ...
+    'tebak_angka',
+    ...
+]
+```
+
+
 3. Pada settings.py, tambahkan
 ```python
 TEMPLATES = [

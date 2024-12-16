@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prediction Logs</title>
+</head>
+<body>
+    <h1>Summary of Prediction</h1>
+    <p>Total Hits: {{ total_hits }}</p>
+    <p>Total Cost: {{ total_cost|floatformat:2 }} Rupiah</p>
+
+    <h1>Prediction Logs</h1>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Uploaded Photo</th>
+                <th>Prediction</th>
+                <th>Confidence Score</th>
+                <th>Price (Rupiah)</th>
+                <th>Timestamp</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for log in logs %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>
+                    <img src="{{ log.photo.photo.url }}" alt="Uploaded Photo" style="width: 50px; height: 50px;">
+                </td>
+                <td>{{ log.prediction }}</td>
+                <td>{{ log.confidence_score|floatformat:2 }}</td>
+                <td>{{ log.price|floatformat:2 }}</td>
+                <td>{{ log.created_at }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="6">No logs available.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <p><a href="/">back to home</a></p>
+
+</body>
+</html>
