@@ -1,7 +1,6 @@
 Django==4.2.16
 google_play_scraper==1.2.7
-numpy==2.2.0
-Pillow==9.5.0
+numpy
 Pillow==11.0.0
 python-dotenv==1.0.1
 tensorflow==2.18.0
