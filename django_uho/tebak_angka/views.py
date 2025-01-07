@@ -12,13 +12,6 @@ import os
 cnn_model_path = os.path.join(settings.BASE_DIR, 'ai_models', 'cnn_mnist_model.h5')
 cnn_model = load_model(cnn_model_path)
 
-def test(request):
-    if request.method == 'POST':
-        form = PhotoUploadForm(request.POST, request.FILES)
-    else:
-        form = PhotoUploadForm()
-    
-    return render(request, 'tebak_angka/form_test.html', {'form': form})
 
 def cnn_prediction(request):
     if request.method == 'POST':
@@ -44,6 +37,14 @@ def cnn_prediction(request):
         form = PhotoUploadForm()
     
     return render(request, 'tebak_angka/cnn_predict.html', {'form': form})
+
+def test(request):
+    if request.method == 'POST':
+        form = PhotoUploadForm(request.POST, request.FILES)
+    else:
+        form = PhotoUploadForm()
+    
+    return render(request, 'tebak_angka/form_test.html', {'form': form})
 
 def cnn_prediction_log(request):
     if request.method == 'POST':
